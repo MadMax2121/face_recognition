@@ -32,8 +32,6 @@ class FaceRecognition:
 
             self.known_face_encodings.append(face_encoding)
             self.known_face_names.append(image)
-        
-        print(self.known_face_names)
 
 
     def run_recognition(self):
@@ -64,7 +62,8 @@ class FaceRecognition:
                     best_match_index = np.argmin(face_distances) #least in array
 
                     if matches[best_match_index]:
-                        name = self.known_face_names[best_match_index]
+                        name_arr = self.known_face_names[best_match_index]
+                        name = name_arr[:-4]
                         confidence = face_confidence(face_distances[best_match_index])
 
                     self.face_names.append(f'{name} ({confidence})')
